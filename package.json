@@ -1,0 +1,87 @@
+{
+  "name": "@keenghost/js-dev",
+  "version": "0.0.1",
+  "description": "keenghost javascript development",
+  "keywords": [
+    "keenghost",
+    "javascript",
+    "development"
+  ],
+  "author": "keenghost",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/keenghost/js-dev.git"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "module",
+  "exports": {
+    "./eslint": {
+      "types": "./packages/eslint.d.ts",
+      "import": "./packages/eslint.js"
+    },
+    "./simple-test": {
+      "types": "./packages/simple-test.d.ts",
+      "import": "./packages/simple-test.js"
+    },
+    "./tsconfig/*": "./packages/tsconfig/*"
+  },
+  "files": [
+    "packages"
+  ],
+  "dependencies": {
+    "@eslint/js": "^9.39.2",
+    "eslint-plugin-import-x": "^4.16.1",
+    "eslint-plugin-n": "^17.23.2",
+    "eslint-plugin-regexp": "^2.10.0",
+    "eslint-plugin-vue": "^10.7.0",
+    "globals": "^17.0.0",
+    "picocolors": "^1.1.1",
+    "typescript-eslint": "^8.53.1"
+  },
+  "peerDependencies": {
+    "eslint": "^9.0.0"
+  },
+  "peerDependenciesMeta": {
+    "eslint": {
+      "optional": true
+    }
+  },
+  "private": true,
+  "scripts": {
+    "preinstall": "npx only-allow pnpm",
+    "postinstall": "simple-git-hooks",
+    "format": "prettier --cache --write .",
+    "formatcheck": "prettier --cache --check .",
+    "typecheck": "tsc --noEmit",
+    "fix": "pnpm format",
+    "check": "pnpm formatcheck && pnpm typecheck",
+    "build": "node scripts/build.js",
+    "release": "cd dist && npm publish --auth-type=legacy"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": "^10.0.0"
+  },
+  "pnpm": {
+    "neverBuiltDependencies": []
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged --concurrent false"
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --cache --write --ignore-unknown"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^22.19.7",
+    "eslint": "^9.39.2",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.8.1",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "^5.9.3"
+  }
+}
