@@ -89,6 +89,16 @@ const useVueRules: (options: IUseVueRules) => Linter.Config[] = options => {
         // vue/strongly-recommended/rules
         'vue/max-attributes-per-line': 'off', // passthrough to prettier printWidth
         'vue/singleline-html-element-content-newline': 'off', // neatness layout
+
+        'vue/html-indent': 'off', // conflit with prettier
+        'vue/html-self-closing': [
+          'warn',
+          {
+            html: { void: 'always', normal: 'always', component: 'always' },
+            svg: 'always',
+            math: 'always',
+          },
+        ], // void conflit with prettier
       },
     },
     {
