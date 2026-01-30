@@ -84,7 +84,6 @@ const useBaseRules: () => Linter.Config[] = () => {
         'no-new-wrappers': 'error',
         'no-useless-concat': 'warn',
 
-        '@typescript-eslint/explicit-module-boundary-types': ['error', { allowArgumentsExplicitlyTypedAsAny: true }],
         '@typescript-eslint/no-empty-function': ['error', { allow: ['arrowFunctions'] }],
         '@typescript-eslint/no-empty-object-type': ['error', { allowInterfaces: 'with-single-extends' }],
         '@typescript-eslint/no-unused-vars': [
