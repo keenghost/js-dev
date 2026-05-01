@@ -1,0 +1,36 @@
+name: 发布 @keenghost/js-dev
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build_and_publish:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+    steps:
+      - name: 拉取代码
+        uses: actions/checkout@v6
+
+      - name: 安装 node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+
+      - name: 安装 pnpm
+        uses: pnpm/action-setup@v6
+        with:
+          version: 10
+
+      - name: 安装 dependencies
+        run: pnpm i
+
+      - name: 检查代码
+        run: pnpm check
+
+      - name: 构建
+        run: pnpm build
+
+      - name: 发布
+        run: npm publish --provenance
+        working-directory: dist
